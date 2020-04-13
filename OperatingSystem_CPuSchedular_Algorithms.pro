@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,17 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    GraphicalCharts/Charts.cpp \
+    GraphicalCharts/charts_representation.cpp \
+    inputdialog.cpp \
     main.cpp \
     mainwindow.cpp \
     schedulerAlgorithms.cpp
 
 HEADERS += \
-    GraphicalCharts/Charts.h \
+    GraphicalCharts/charts_representation.h \
+    inputdialog.h \
     mainwindow.h \
     schedulerAlgorithms.h
 
 FORMS += \
+    inputdialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.

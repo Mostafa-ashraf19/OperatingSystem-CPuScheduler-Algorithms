@@ -5,7 +5,9 @@
 #include<string>
 #include<algorithm>
 #include<numeric>
-enum scheduler_type{ FCFS , SJF};
+enum scheduler_type{ FCFS , SJF_PRIMITVE,
+                     SJF_NON_PRIMITVE,PRIORTY_PRIMITVE,
+                     PRIORTY_NON_PRIMITVE,ROUND_ROBEB};
 
 class Algorithms
 {

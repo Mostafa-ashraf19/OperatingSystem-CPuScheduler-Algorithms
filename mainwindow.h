@@ -3,13 +3,18 @@
 
 #include <QMainWindow>
 #include"schedulerAlgorithms.h"
+#include"GraphicalCharts/charts_representation.h"
+#include"inputdialog.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class Charts_Representation;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+private:
+    void SetComboBox();
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -25,11 +30,15 @@ private slots:
     void on_RemoveProcess_clicked();
 
     void on_Run_clicked();
-void hey();
 
 
-private:
+
+protected:
+
+    Charts_Representation *chart;
+    //Charts_Representation chart;
     Ui::MainWindow *ui;
     Algorithms l;
+    InputDialog *inputdialog;
 };
 #endif // MAINWINDOW_H

@@ -12,7 +12,6 @@ int Algorithms::val(scheduler_type t)
     switch (t)
     {
     case FCFS:
-
         while(Process.size())
         {
             Time_res.push_back(current);
