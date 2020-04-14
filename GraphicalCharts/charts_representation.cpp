@@ -60,3 +60,11 @@ void Charts_Representation::SetChart_Title()
 {
     chart->setTitle("Process Drawing Simulation");
 }
+
+void Charts_Representation::drawProcesses(std::pair<std::vector<int>, std::vector<int> > Process, int index)
+{
+    for(unsigned int k = 0;k < Process.first.size();k++)
+    {
+        addProcess("m",Process.first[k],Process.second[k],index);
+    }
+}

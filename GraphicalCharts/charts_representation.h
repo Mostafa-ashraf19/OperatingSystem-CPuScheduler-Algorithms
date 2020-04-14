@@ -49,6 +49,7 @@ public:
      void Chartsettings();
      QChartView* ViewChart();
     void SetChart_Title();
+    void drawProcesses(std::pair<std::vector<int>,std::vector<int>> Process,int index);
 
 };
 
