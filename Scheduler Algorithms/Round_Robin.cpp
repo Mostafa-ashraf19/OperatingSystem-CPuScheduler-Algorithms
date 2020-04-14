@@ -1,12 +1,12 @@
 #include "Round_Robin.h"
 
 
-std::pair<std::vector<int>,std::vector<int>> process_start_end(int index)
+std::pair<std::vector<int>,std::vector<int>> RoundRobin:: process_start_end(int index)
     {
         return  {p[index].start , p[index].end};
     };
 
-std::vector<Process> getProcesses (){
+std::vector<Process> RoundRobin:: getProcesses (){
         return p;
     }
 void RoundRobin:: arrayofProcess_Processing (   ) {
@@ -24,14 +24,14 @@ void RoundRobin:: arrayofProcess_Processing (   ) {
 }
 float  RoundRobin ::  avg_Waitting_Time (  ){
     float avg = 0;
-    for (int i = 0; i < p.size(); ++i) {
+    for (unsigned int i = 0; i < p.size(); ++i) {
         avg = avg + p[i].waitingTime;
     }
     return avg/ static_cast<float>(p.size());
 }
 void RoundRobin:: process_Init ( ){
-    int i ; //counter
-    for (i = 0; i < p.size(); i++) {
+    unsigned int i ; //counter
+    for ( i = 0; i < p.size(); i++) {
         p[i].isCompleted = FALSE;
         p[i].waitingTime = 0;
         p[i].responseTime = 0;
@@ -39,7 +39,7 @@ void RoundRobin:: process_Init ( ){
     }
 }
 void RoundRobin :: roundRobin_calculate_turnaround_time( ){
-    int i;
+    unsigned int i;
     // counter
     /* calculate turnaround time for each process */
     for (i = 0; i < p.size(); i++)
@@ -50,7 +50,7 @@ void RoundRobin :: set_QuantumTime (quantum q){
     Q =q  ;
 }
 void RoundRobin ::  get_start_end (  ){
-    int i;
+    unsigned int i;
     for (i=0 ; i < p.size(); i++){
         p[i].remainTime=p[i].burstTime;
     }
