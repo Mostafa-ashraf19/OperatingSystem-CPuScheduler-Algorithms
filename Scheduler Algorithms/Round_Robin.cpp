@@ -4,26 +4,20 @@
 void RoundRobin:: arrayofProcess_Processing (   ) {
     //intialise array of processes
     process_Init();
-
     //sort by arrival time
-    //merge_sort_by_arrive_time(p,0,noProcess-1);
     std::sort(p.begin(),p.end(),[](Process x , Process y){
         return x.arrivalTime < y.arrivalTime;
     });
-
     //calculate waitting time for each process
     roundRobin_waitingTime();
     //calculate turnarround time for all processes time from a
     roundRobin_calculate_turnaround_time();
-
     get_start_end () ;
-
 }
 float  RoundRobin ::  avg_Waitting_Time (  ){
     float avg = 0;
     for (int i = 0; i < p.size(); ++i) {
         avg = avg + p[i].waitingTime;
-
     }
     return avg/ static_cast<float>(p.size());
 }
@@ -34,14 +28,11 @@ void RoundRobin:: process_Init ( ){
         p[i].waitingTime = 0;
         p[i].responseTime = 0;
         p[i].completionTime = 0;
-
     }
-
 }
 void RoundRobin :: roundRobin_calculate_turnaround_time( ){
     int i;
     // counter
-
     /* calculate turnaround time for each process */
     for (i = 0; i < p.size(); i++)
         p[i].turn_aroundTime = p[i].burstTime + p[i].waitingTime /*- p[i].arrivalTime*/;
@@ -50,7 +41,6 @@ void RoundRobin :: roundRobin_calculate_turnaround_time( ){
 void RoundRobin :: set_QuantumTime (quantum q){
     Q =q  ;
 }
-
 void RoundRobin ::  get_start_end (  ){
     int i;
     for (i=0 ; i < p.size(); i++){
@@ -63,8 +53,7 @@ void RoundRobin ::  get_start_end (  ){
             maxComp = p[i].completionTime;
 
     }
-
-    int currentTime = p[0].arrivalTime /*p[0].responseTime*/;
+    int currentTime = p[0].arrivalTime;
     while (true){
         x=1;
         for (i=0 ; i< p.size() ; i++){
@@ -95,9 +84,7 @@ void RoundRobin ::  get_start_end (  ){
 void RoundRobin:: roundRobin_waitingTime ( ){
     int  i ; //counter
     int  currentTime = p[0].arrivalTime ;
-// float *remainBurstTime = (float *)malloc(sizeof(int) * noProcess);
     int *remainBurstTime = new int[(sizeof(int) *p.size())];
-    //float *calcResponseTime = (float *)malloc(sizeof(int) * noProcess);
     int *calcResponseTime = new int[(sizeof(int)*p.size())];
 
     int sumBurst =0 ;
@@ -119,14 +106,11 @@ void RoundRobin:: roundRobin_waitingTime ( ){
         for (i = 0; i < p.size(); i++) {
             if (p[i].arrivalTime <= currentTime && remainBurstTime[i] > 0) {
                 /* if process still has burst time */
-                //if (remainBurstTime[i] > 0) //added  || currentTime < sumBurst
-                //{
                 x++;
                 if (remainBurstTime[i] > Q) {
                     // we can't break a loop as a process still has burst time
                     // increase current time by quantum
                     currentTime += Q;
-
                     // remain time = remain time - quantum time
                     remainBurstTime[i] -= Q;
                     check = FALSE;
@@ -136,8 +120,6 @@ void RoundRobin:: roundRobin_waitingTime ( ){
                     p[i].waitingTime = currentTime - p[i].burstTime - p[i].arrivalTime; //i edit added arrival time
                     // burst time now = 0
                     remainBurstTime[i] = 0;
-                    // i=0;
-
                 }
                 /* if process still in ready queue */
                 if (calcResponseTime[i] == FALSE) {
@@ -148,50 +130,25 @@ void RoundRobin:: roundRobin_waitingTime ( ){
                     // process left ready queue
                 }
 
-                /* if Process remain time > quantum */
-                /* if (remainBurstTime[i] > Q) {
-                     //
-
-                 }*/
-                /*else if (remainBurstTime[i]<=q){
-                    currentTime +=remainBurstTime[i];
-                }*/
-                /*else if ( p[i].arrivalTime > currentTime){
-                    currentTime += p[i].arrivalTime- currentTime;
-
-                }*/
-                /* if process remain time <= quantum time */
-
             }
 
             }
-            /*else if(p[i].arrivalTime > currentTime)
-                calcResponseTime[i]=TRUE;*/
-
+        
         if (x <= 1){
             currentTime++;}
-
         /* no process has burst time */
-
-        if (check == TRUE)
-
+        if (check == TRUE
             break; //break while loop
-
     }
     for (i=0 ; i<p.size() ; i++){
         if (p[i].responseTime < p[i].arrivalTime){
             p[i].responseTime = p[i].arrivalTime;}
         p[i].completionTime = p[i].arrivalTime+ p[i].waitingTime+p[i].burstTime;
-        //std::cout << p[i].id << " comp : " <<p[i].completionTime <<std::endl ;
     }
-    //  free(remainBurstTime);
-    //free (calcResponseTime);
-    // free memory allocation
     delete[] remainBurstTime;
     delete[] calcResponseTime;
 
 }
-
 
 void RoundRobin:: add_Process(std::string process_name, int arrivalTime ,int burstTime)
 {

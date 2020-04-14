@@ -26,8 +26,6 @@ struct Process {
                              //   Waiting time = Turn Around time – Burst time
                              //   Response Time = Time at which process first gets the CPU – Arrival time
                              //   Turn Around time = Burst time + Waiting time  or Turn Around time = Completion time – Arrival time
-
-                            //for more details : https://www.gatevidyalay.com/turn-around-time-response-time-waiting-time/
 };
 
 
@@ -35,9 +33,6 @@ class RoundRobin {
     std::vector<Process> p;
     typedef int quantum ;     // The period of time for which a process is allowed to run in a preemptive multitasking system is generally called the time slice or quantum.
     quantum  Q ;
-//get start and ends of each process
-
-
     int id;
 public:
     std::pair<std::vector<int>,std::vector<int>> process_start_end(int i)
@@ -56,13 +51,8 @@ public:
     void roundRobin_calculate_turnaround_time( );
     void set_QuantumTime (quantum q) ;
     void roundRobin_waitingTime ( );
-//get start and ends of each process
     RoundRobin();
 void add_Process(std::string process_name, int arrivalTime ,int burstTime);
 };
-
-//
-
-
 
 #endif // ROUND_ROBIN_H
