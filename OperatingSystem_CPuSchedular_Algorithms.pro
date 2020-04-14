@@ -17,16 +17,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     GraphicalCharts/charts_representation.cpp \
+    SchedulerAlgorithms/Round_Robin.cpp \
     inputdialog.cpp \
     main.cpp \
-    mainwindow.cpp \
-    schedulerAlgorithms.cpp
+    mainwindow.cpp
 
 HEADERS += \
     GraphicalCharts/charts_representation.h \
+    Macros_Definitions.h \
+    SchedulerAlgorithms/Round_Robin.h \
     inputdialog.h \
-    mainwindow.h \
-    schedulerAlgorithms.h
+    mainwindow.h
 
 FORMS += \
     inputdialog.ui \

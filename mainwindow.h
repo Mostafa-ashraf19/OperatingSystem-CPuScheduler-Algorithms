@@ -2,9 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include"schedulerAlgorithms.h"
+//#include"schedulerAlgorithms.h"
 #include"GraphicalCharts/charts_representation.h"
+#include"Macros_Definitions.h"
 #include"inputdialog.h"
+#include"SchedulerAlgorithms/Round_Robin.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -38,7 +41,7 @@ protected:
     Charts_Representation *chart;
     //Charts_Representation chart;
     Ui::MainWindow *ui;
-    Algorithms l;
+    RoundRobin roundrobin;
     InputDialog *inputdialog;
 };
 #endif // MAINWINDOW_H
