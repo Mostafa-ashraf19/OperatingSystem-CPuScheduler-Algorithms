@@ -7,9 +7,14 @@ std::pair<std::vector<int>,std::vector<int>> RoundRobin:: process_start_end(int 
     };
 
 std::vector<Process> RoundRobin:: getProcesses (){
-        return p;
-    }
-void RoundRobin:: arrayofProcess_Processing (   ) {
+    return p;
+}
+
+unsigned int RoundRobin::size()
+{
+    return  p.size();
+}
+void RoundRobin:: arrayofProcess_Processing () {
     //intialise array of processes
     process_Init();
     //sort by arrival time
@@ -90,7 +95,7 @@ void RoundRobin ::  get_start_end (  ){
 
 }
 void RoundRobin:: roundRobin_waitingTime ( ){
-    int  i ; //counter
+    unsigned int  i ; //counter
     int  currentTime = p[0].arrivalTime ;
     int *remainBurstTime = new int[(sizeof(int) *p.size())];
     int *calcResponseTime = new int[(sizeof(int)*p.size())];
@@ -139,13 +144,11 @@ void RoundRobin:: roundRobin_waitingTime ( ){
                 }
 
             }
-
             }
-        
         if (x <= 1){
             currentTime++;}
         /* no process has burst time */
-        if (check == TRUE
+        if (check == TRUE)
             break; //break while loop
     }
     for (i=0 ; i<p.size() ; i++){
@@ -160,8 +163,9 @@ void RoundRobin:: roundRobin_waitingTime ( ){
 
 void RoundRobin:: add_Process(std::string process_name, int arrivalTime ,int burstTime)
 {
-    p.push_back({id , arrivalTime , 0 , 0 ,burstTime});
-    id++;
+
+    p.push_back({process_name,id , arrivalTime , 0 , 0 ,burstTime,0,0,0,0,0});
+id++;
 }
 RoundRobin ::RoundRobin(){id=0;};
 

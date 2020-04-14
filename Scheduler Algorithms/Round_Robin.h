@@ -9,6 +9,7 @@
 #include <algorithm>
 
 struct Process {
+    std::string ProcessName;
     int id ;
     int arrivalTime ;      //   Arrival time is the point of time at which a process enters the ready queue.
     int waitingTime ;      //   Waiting time is the amount of time spent by a process waiting in the ready queue for getting the CPU.
@@ -19,8 +20,8 @@ struct Process {
     int isCompleted ;        //   Define if process completed or not 1 (completed) or 0 (not completed.)
     int priority ;           //   lower number means high priority.
     int remainTime;
-    std::vector<int> start;
-    std::vector<int> end ;
+    std::vector<int>start;
+    std::vector<int>end;
 
                              //   Waiting time = Turn Around time – Burst time
                              //   Response Time = Time at which process first gets the CPU – Arrival time
@@ -36,6 +37,7 @@ class RoundRobin {
 public:
 	std::pair<std::vector<int>,std::vector<int>> process_start_end(int index);
     std::vector<Process> getProcesses ();
+    unsigned int size();
     void arrayofProcess_Processing ();
     void get_start_end ();
     float avg_Waitting_Time ();
