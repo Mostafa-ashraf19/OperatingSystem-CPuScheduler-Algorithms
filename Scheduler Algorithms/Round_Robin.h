@@ -9,8 +9,7 @@
 #include <algorithm>
 
 struct Process {
-      int id ;
-    //char id [30] ;           //   Process id
+    int id ;
     int arrivalTime ;      //   Arrival time is the point of time at which a process enters the ready queue.
     int waitingTime ;      //   Waiting time is the amount of time spent by a process waiting in the ready queue for getting the CPU.
     int responseTime ;     //   Response time is the amount of time after which a process gets the CPU for the first time after entering the ready queue.
