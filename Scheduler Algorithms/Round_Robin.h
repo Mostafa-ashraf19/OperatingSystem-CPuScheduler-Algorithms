@@ -34,24 +34,17 @@ class RoundRobin {
     quantum  Q ;
     int id;
 public:
-    std::pair<std::vector<int>,std::vector<int>> process_start_end(int i)
-    {
-
-        return  {p[i].start , p[i].end};
-    };
-
-    std::vector<Process> getProcesses (){
-        return p;
-    }
-    void arrayofProcess_Processing (   );
-    void get_start_end (  );
-    float avg_Waitting_Time (  );
-    void process_Init ( );
-    void roundRobin_calculate_turnaround_time( );
+	std::pair<std::vector<int>,std::vector<int>> process_start_end(int index);
+    std::vector<Process> getProcesses ();
+    void arrayofProcess_Processing ();
+    void get_start_end ();
+    float avg_Waitting_Time ();
+    void process_Init ();
+    void roundRobin_calculate_turnaround_time();
     void set_QuantumTime (quantum q) ;
-    void roundRobin_waitingTime ( );
+    void roundRobin_waitingTime ();
     RoundRobin();
-void add_Process(std::string process_name, int arrivalTime ,int burstTime);
+	void add_Process(std::string process_name, int arrivalTime ,int burstTime);
 };
 
 #endif // ROUND_ROBIN_H

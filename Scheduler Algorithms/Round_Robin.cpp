@@ -1,6 +1,14 @@
 #include "Round_Robin.h"
 
 
+std::pair<std::vector<int>,std::vector<int>> process_start_end(int index)
+    {
+        return  {p[index].start , p[index].end};
+    };
+
+std::vector<Process> getProcesses (){
+        return p;
+    }
 void RoundRobin:: arrayofProcess_Processing (   ) {
     //intialise array of processes
     process_Init();
