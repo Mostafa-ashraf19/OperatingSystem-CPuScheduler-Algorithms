@@ -3,11 +3,9 @@
 void Charts_Representation::ChartView_settings()
 {
 current=0;
- chartview->setRenderHint(QPainter::Antialiasing);
-
- axis->setTitleText("Hello thier");
- chart->setAxisX(axis);
-
+chartview->setRenderHint(QPainter::Antialiasing);
+axis->setTitleText("Hello thier");
+chart->setAxisX(axis);
 }
 
 Charts_Representation::Charts_Representation()
@@ -36,9 +34,6 @@ void Charts_Representation::addProcess(std::string Process_name,
     Series[i]->append(From_X_Position,_Process_index);
     Series[i]->append(To_X_Position,_Process_index);
     }
-   // current++;
-   // Chartsettings();
-   // Chartsettings();
 }
 
 void Charts_Representation::Chartsettings()
