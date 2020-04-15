@@ -17,7 +17,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     GraphicalCharts/charts_representation.cpp \
+    SchedulerAlgorithms/FCFC.cpp \
+    SchedulerAlgorithms/Priorty_Twice.cpp \
     SchedulerAlgorithms/Round_Robin.cpp \
+    SchedulerAlgorithms/SJF_Twice.cpp \
     inputdialog.cpp \
     main.cpp \
     mainwindow.cpp
@@ -25,13 +28,18 @@ SOURCES += \
 HEADERS += \
     GraphicalCharts/charts_representation.h \
     Macros_Definitions.h \
+    SchedulerAlgorithms/FCFS.h \
+    SchedulerAlgorithms/Priorty_Twice.h \
     SchedulerAlgorithms/Round_Robin.h \
+    SchedulerAlgorithms/SJF_Twice.h \
     inputdialog.h \
     mainwindow.h
 
 FORMS += \
     inputdialog.ui \
     mainwindow.ui
+
+RC_ICONS = Martz90-Circle-Plex.ico
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
