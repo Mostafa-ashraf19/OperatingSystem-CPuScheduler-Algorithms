@@ -17,12 +17,12 @@ void MainWindow::SetComboBox()
 {
     ui->tabWidget->setTabText(0,"operations");
     ui->tabWidget->setTabText(1,"Gantt Chart");
-    ui->comboBox->insertItem(FCFS,"FCFS");
-    ui->comboBox->insertItem(SJF_PRIMITVE,"SJF Premitive");
-    ui->comboBox->insertItem(SJF_NON_PRIMITVE,"SJF Non Premitive");
-    ui->comboBox->insertItem(PRIORTY_PRIMITVE,"Priorty Primtive");
-    ui->comboBox->insertItem(PRIORTY_NON_PRIMITVE,"Priorty Non Primtive");
-    ui->comboBox->insertItem(ROUND_ROBEB,"Round Roben");
+    ui->comboBox->insertItem(FCFS_,"FCFS");
+    ui->comboBox->insertItem(SJF_PRIMITVE_,"SJF Premitive");
+    ui->comboBox->insertItem(SJF_NON_PRIMITVE_,"SJF Non Premitive");
+    ui->comboBox->insertItem(PRIORTY_PRIMITVE_,"Priorty Primtive");
+    ui->comboBox->insertItem(PRIORTY_NON_PRIMITVE_,"Priorty Non Primtive");
+    ui->comboBox->insertItem(ROUND_ROBEB_,"Round Roben");
     ui->tabWidget->setCurrentIndex(0);
 
 }
@@ -70,27 +70,34 @@ ui->listWidget->addItem("Process Name: "+QString::fromStdString(inputdialog->Pro
     "Arrival Time: "+QString::fromStdString(inputdialog->ArrivalTime())+'\t'+'\t'+
         "Burst Time: "+QString::fromStdString(inputdialog->BurstTime()));
 }
- if( ui->comboBox->currentIndex() == PRIORTY_PRIMITVE ||
-           ui->comboBox->currentIndex() == PRIORTY_NON_PRIMITVE)
-   {
-        QInputDialog::getInt(this,"Time","Priority number",1,1,100,1);
-   }
+// if( ui->comboBox->currentIndex() == PRIORTY_PRIMITVE_ ||
+//           ui->comboBox->currentIndex() == PRIORTY_NON_PRIMITVE_)
+//   {
+//        QInputDialog::getInt(this,"Time","Process Priority number",1,1,100,1);
+//   }
  switch (ui->comboBox->currentIndex()) {
- case FCFS:
+ case FCFS_:
+     fcfs.set_new_process(inputdialog->Process_name(),atoi(inputdialog->BurstTime().c_str()),atoi(inputdialog->ArrivalTime().c_str()));
      break;
- case  SJF_PRIMITVE:
-     ui->lcdNumber->display(66);
+ case  SJF_PRIMITVE_:
+sjf.set_new_process(inputdialog->Process_name(),atoi(inputdialog->BurstTime().c_str()),atoi(inputdialog->ArrivalTime().c_str()));
      break;
- case  SJF_NON_PRIMITVE:
-     ui->lcdNumber->display(66);
+ case  SJF_NON_PRIMITVE_:
+     sjf.set_new_process(inputdialog->Process_name(),atoi(inputdialog->BurstTime().c_str()),atoi(inputdialog->ArrivalTime().c_str()));
      break;
- case  PRIORTY_PRIMITVE:
-     ui->lcdNumber->display(66);
+ case  PRIORTY_PRIMITVE_:
+priorty.set_new_process(inputdialog->Process_name(),
+                        atoi(inputdialog->BurstTime().c_str()),
+                        atoi(inputdialog->ArrivalTime().c_str()),
+                        QInputDialog::getInt(this,"Time","Process Priority number",1,1,100,1));
      break;
- case  PRIORTY_NON_PRIMITVE:
-     ui->lcdNumber->display(66);
+ case  PRIORTY_NON_PRIMITVE_:
+     priorty.set_new_process(inputdialog->Process_name(),
+                             atoi(inputdialog->BurstTime().c_str()),
+                             atoi(inputdialog->ArrivalTime().c_str()),
+                             QInputDialog::getInt(this,"Time","Process Priority number",1,1,100,1));
      break;
- case ROUND_ROBEB:
+ case ROUND_ROBEB_:
      roundrobin.add_Process(inputdialog->Process_name(),atoi(inputdialog->ArrivalTime().c_str()),atoi(inputdialog->BurstTime().c_str()));
      break;
  default:
@@ -108,21 +115,65 @@ void MainWindow::on_Run_clicked()
 {
 
     switch (ui->comboBox->currentIndex()) {
-    case FCFS:
+    case FCFS_:
+       fcfs.fcfs_method();
+       ui->lcdNumber->display(QString::number(roundAllNumbers(fcfs.average_fun())));
+       for(auto a=fcfs.return_value_to_mostafa();a !=nullptr ;a=a->next)
+       {
+         chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
+       }
+      chart->Chartsettings();
+      ui->verticalLayout_3->addWidget(chart->ViewChart());
         break;
-    case  SJF_PRIMITVE:
-        ui->lcdNumber->display(66);
+
+    case  SJF_PRIMITVE_:
+    sjf.premptive_method();
+    qDebug() << roundAllNumbers(sjf.average_fun()) ;
+    ui->lcdNumber->display(QString::number(roundAllNumbers(sjf.average_fun())));
+    for(auto a=sjf.return_value_to_mostafa();a !=nullptr ;a=a->next)
+    {
+      chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
+    }
+    chart->Chartsettings();
+    ui->verticalLayout_3->addWidget(chart->ViewChart());
         break;
-    case  SJF_NON_PRIMITVE:
-        ui->lcdNumber->display(66);
+
+    case  SJF_NON_PRIMITVE_:
+        sjf.non_premptive_method();
+         qDebug() << roundAllNumbers(sjf.average_fun()) ;
+        ui->lcdNumber->display(QString::number(roundAllNumbers(sjf.average_fun())));
+        for(auto a=sjf.return_value_to_mostafa();a !=nullptr ;a=a->next)
+        {
+          chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
+        }
+        chart->Chartsettings();
+        ui->verticalLayout_3->addWidget(chart->ViewChart());
+       break;
+
+    case  PRIORTY_PRIMITVE_:
+    priorty.premptive_method();
+    ui->lcdNumber->display(QString::number(roundAllNumbers(priorty.average_fun())));
+    for(auto a=priorty.return_value_to_mostafa();a !=nullptr ;a=a->next)
+    {
+      chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
+    }
+    chart->Chartsettings();
+    ui->verticalLayout_3->addWidget(chart->ViewChart());
+
         break;
-    case  PRIORTY_PRIMITVE:
-        ui->lcdNumber->display(66);
+
+    case  PRIORTY_NON_PRIMITVE_:
+        priorty.non_premptive_method();
+        ui->lcdNumber->display(QString::number(roundAllNumbers(priorty.average_fun())));
+        for(auto a=priorty.return_value_to_mostafa();a !=nullptr ;a=a->next)
+        {
+          chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
+        }
+        chart->Chartsettings();
+        ui->verticalLayout_3->addWidget(chart->ViewChart());
         break;
-    case  PRIORTY_NON_PRIMITVE:
-        ui->lcdNumber->display(66);
-        break;
-    case ROUND_ROBEB:
+
+    case ROUND_ROBEB_:
         roundrobin.set_QuantumTime(QInputDialog::getInt(this,"Time","Quantum Time",1,1,100,1));
         roundrobin.arrayofProcess_Processing();
         ui->lcdNumber->display(QString::number(roundAllNumbers(roundrobin.avg_Waitting_Time())));
