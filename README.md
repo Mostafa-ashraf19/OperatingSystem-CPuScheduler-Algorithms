@@ -1,4 +1,4 @@
-# OperatingSystem-CPuScheduler-Algorithms
+# Operating System CPU Scheduler Algorithms
 --- 
 
 Operating System Scheduler algorithms techniques with GUI for Simulation, Use in implementation Modern **C++** principles and **Qt Creator** platform for **GUI**.
