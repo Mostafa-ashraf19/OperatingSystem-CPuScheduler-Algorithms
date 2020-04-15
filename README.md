@@ -1,4 +1,4 @@
-# OperatingSystem-CPuScheduler-Algorithms.
+# OperatingSystem-CPuScheduler-Algorithms
 --- 
 
 Operating System Scheduler algorithms techniques with GUI for Simulation, Use in implementation Modern **C++** principles and **Qt Creator** platform for **GUI**.
@@ -27,10 +27,10 @@ Operating System Scheduler algorithms techniques with GUI for Simulation, Use in
 
 ---
 
-## Windows Installation Packages for program.
+## Windows Installation Packages for program
 
   - link: 
-[Cpu Schedular Algorithms Simulation](https://github.com/Mostafa-ashraf19/OperatingSystem-CPuScheduler-Algorithms/blob/master/readme/Cpu%20Schedular%20Algorithms%20Simulation.exe)
+[CPU Schedular Algorithms Simulation](https://github.com/Mostafa-ashraf19/OperatingSystem-CPuScheduler-Algorithms/blob/master/readme/Cpu%20Schedular%20Algorithms%20Simulation.exe)
 
 --- 
 
