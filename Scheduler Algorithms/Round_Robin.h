@@ -28,15 +28,14 @@ struct Process {
                              //   Turn Around time = Burst time + Waiting time  or Turn Around time = Completion time – Arrival time
 };
 
-
 class RoundRobin {
     std::vector<Process> p;
     typedef int quantum ;     // The period of time for which a process is allowed to run in a preemptive multitasking system is generally called the time slice or quantum.
     quantum  Q ;
     int id;
 public:
-	std::pair<std::vector<int>,std::vector<int>> process_start_end(int index);
-    std::vector<Process> getProcesses ();
+    std::pair<std::vector<int>,std::vector<int>> process_start_end(int index);
+    std::vector<Process> getProcesses();
     unsigned int size();
     void arrayofProcess_Processing ();
     void get_start_end ();
@@ -46,7 +45,7 @@ public:
     void set_QuantumTime (quantum q) ;
     void roundRobin_waitingTime ();
     RoundRobin();
-	void add_Process(std::string process_name, int arrivalTime ,int burstTime);
+    void add_Process(std::string process_name, int arrivalTime ,int burstTime);
 };
 
 #endif // ROUND_ROBIN_H

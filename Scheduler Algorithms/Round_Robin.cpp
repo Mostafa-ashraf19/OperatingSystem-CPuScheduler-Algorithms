@@ -1,4 +1,5 @@
 #include "Round_Robin.h"
+#include <vector>
 
 
 std::pair<std::vector<int>,std::vector<int>> RoundRobin:: process_start_end(int index)
@@ -89,7 +90,7 @@ void RoundRobin ::  get_start_end (  ){
         }
         if (x <= 1){
             currentTime++;}
-        if (currentTime >= maxComp)
+        if (currentTime >= 10000)
             break;
     }
 
@@ -148,7 +149,7 @@ void RoundRobin:: roundRobin_waitingTime ( ){
         if (x <= 1){
             currentTime++;}
         /* no process has burst time */
-        if (check == TRUE)
+        if (currentTime >= 10000)
             break; //break while loop
     }
     for (i=0 ; i<p.size() ; i++){
@@ -164,13 +165,8 @@ void RoundRobin:: roundRobin_waitingTime ( ){
 void RoundRobin:: add_Process(std::string process_name, int arrivalTime ,int burstTime)
 {
 
-    p.push_back({process_name,id , arrivalTime , 0 , 0 ,burstTime,0,0,0,0,0});
-id++;
+p.push_back({process_name,id , arrivalTime , 0 , 0 ,burstTime,0,0,0,0,0});
+    id++;
 }
 RoundRobin ::RoundRobin(){id=0;};
-
-
-
-
-
 
