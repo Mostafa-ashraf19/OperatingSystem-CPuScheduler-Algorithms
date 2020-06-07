@@ -29,6 +29,7 @@ HEADERS += \
     GraphicalCharts/charts_representation.h \
     Macros_Definitions.h \
     SchedulerAlgorithms/FCFS.h \
+    SchedulerAlgorithms/FCFS.h \
     SchedulerAlgorithms/Priorty_Twice.h \
     SchedulerAlgorithms/Round_Robin.h \
     SchedulerAlgorithms/SJF_Twice.h \

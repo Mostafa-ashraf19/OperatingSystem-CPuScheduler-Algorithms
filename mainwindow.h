@@ -33,9 +33,9 @@ protected:
     Charts_Representation *chart;
     Ui::MainWindow *ui;
     RoundRobin roundrobin;
-    FCFS fcfs;
-    PriortyTwice::Priorty_Twice priorty;
-    SJF_TWICE::SJF_Twice sjf;
+    FCFS_Area::FCFS fcfs;
+    Priorty_Area::Priority priorty;
+    JSF_Area::SJF sjf;
     InputDialog *inputdialog;
 };
 #endif // MAINWINDOW_H

@@ -40,13 +40,6 @@ MainWindow::MainWindow(QWidget *parent)
     chart = new Charts_Representation();
     SetComboBox();
     chart->SetChart_Title();
-    /*chart->addProcess("p1",0,1,1);
-    chart->addProcess("P2",3,4,1);
-    chart->addProcess("p3",6,7,1);
-    chart->addProcess("p3",9,10,1);
-    chart->Chartsettings();
-    ui->verticalLayout_3->addWidget(chart->ViewChart());*/
-// x does not name type mean it's not know how many bytes will be allocate
 
 }
 
@@ -116,59 +109,57 @@ void MainWindow::on_Run_clicked()
 
     switch (ui->comboBox->currentIndex()) {
     case FCFS_:
-       fcfs.fcfs_method();
-       ui->lcdNumber->display(QString::number(roundAllNumbers(fcfs.average_fun())));
-       for(auto a=fcfs.return_value_to_mostafa();a !=nullptr ;a=a->next)
-       {
-         chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
-       }
+       fcfs.first_come_first_serve();
+       ui->lcdNumber->display(QString::number(roundAllNumbers(fcfs.average_waiting_time())));
+       for(auto& a:fcfs.return_ready_queue())
+        {
+      chart->addProcess(a.name,a.starting_time,a.end_time,a.index);
+         }
       chart->Chartsettings();
       ui->verticalLayout_3->addWidget(chart->ViewChart());
         break;
 
     case  SJF_PRIMITVE_:
-    sjf.premptive_method();
-    qDebug() << roundAllNumbers(sjf.average_fun()) ;
-    ui->lcdNumber->display(QString::number(roundAllNumbers(sjf.average_fun())));
-    for(auto a=sjf.return_value_to_mostafa();a !=nullptr ;a=a->next)
+    sjf.shorted_job_first_preemptive();
+    ui->lcdNumber->display(QString::number(roundAllNumbers(sjf.average_waiting_time())));
+    for(auto& a:sjf.return_ready_queue())
     {
-      chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
+      chart->addProcess(a.name,a.starting_time,a.end_time,a.index);
     }
     chart->Chartsettings();
     ui->verticalLayout_3->addWidget(chart->ViewChart());
         break;
 
     case  SJF_NON_PRIMITVE_:
-        sjf.non_premptive_method();
-         qDebug() << roundAllNumbers(sjf.average_fun()) ;
-        ui->lcdNumber->display(QString::number(roundAllNumbers(sjf.average_fun())));
-        for(auto a=sjf.return_value_to_mostafa();a !=nullptr ;a=a->next)
+        sjf.shorted_job_first_non_preemptive();
+        ui->lcdNumber->display(QString::number(roundAllNumbers(sjf.average_waiting_time())));
+       for(auto& a:sjf.return_ready_queue())
         {
-          chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
-        }
+      chart->addProcess(a.name,a.starting_time,a.end_time,a.index);
+         }
         chart->Chartsettings();
         ui->verticalLayout_3->addWidget(chart->ViewChart());
        break;
 
     case  PRIORTY_PRIMITVE_:
-    priorty.premptive_method();
-    ui->lcdNumber->display(QString::number(roundAllNumbers(priorty.average_fun())));
-    for(auto a=priorty.return_value_to_mostafa();a !=nullptr ;a=a->next)
-    {
-      chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
-    }
+    priorty.preemptive();
+    ui->lcdNumber->display(QString::number(roundAllNumbers(priorty.average_waiting_time())));
+    for(auto& a:priorty.return_ready_queue())
+     {
+   chart->addProcess(a.name,a.starting_time,a.end_time,a.index);
+      }
     chart->Chartsettings();
     ui->verticalLayout_3->addWidget(chart->ViewChart());
 
         break;
 
     case  PRIORTY_NON_PRIMITVE_:
-        priorty.non_premptive_method();
-        ui->lcdNumber->display(QString::number(roundAllNumbers(priorty.average_fun())));
-        for(auto a=priorty.return_value_to_mostafa();a !=nullptr ;a=a->next)
-        {
-          chart->addProcess(a->process_name,a->waiting_time,a->waiting_time+a->running_time,a->index);
-        }
+        priorty.non_preemptive();
+        ui->lcdNumber->display(QString::number(roundAllNumbers(priorty.average_waiting_time())));
+        for(auto& a:priorty.return_ready_queue())
+         {
+       chart->addProcess(a.name,a.starting_time,a.end_time,a.index);
+          }
         chart->Chartsettings();
         ui->verticalLayout_3->addWidget(chart->ViewChart());
         break;
@@ -186,6 +177,4 @@ void MainWindow::on_Run_clicked()
     default:
         break;
     }
-
 }
-
